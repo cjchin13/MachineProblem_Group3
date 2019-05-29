@@ -1,0 +1,129 @@
+#include<iostream>
+#include<conio.h>
+#include<math.h>
+
+using namespace std;
+
+int main()
+{
+	float a, b, c, A, B, C, area, perimeter, apothem, circumcenter, pi;
+	int type; // For easier switching
+	
+	pi = 3.141592; // Defines pi
+	
+	cout << "Enter length of side a : "; // Asks user to input the sides
+	cin >> a;
+	cout << "Enter length of side b : ";
+	cin >> b;
+	cout << "Enter length of side c : ";
+	cin >> c;
+
+	A = (acos(((pow(b, 2)) + (pow(c, 2)) - (pow(a, 2))) / (2 * b * c)) * (180 / pi)); // Cosine law
+	B = (acos(((pow(c, 2)) + (pow(a, 2)) - (pow(b, 2))) / (2 * a * c)) * (180 / pi)); // Converted from rad to degrees
+	C = (acos(((pow(a, 2)) + (pow(b, 2)) - (pow(c, 2))) / (2 * b * a)) * (180 / pi));
+	perimeter = a + b + c;
+	area = sqrt(perimeter * (perimeter - a) * (perimeter - b) * (perimeter - c));
+	apothem = 2 * area / perimeter;
+	circumcenter = ((a * b * c) / (sqrt((a + b + c) * (b + c - a) * (c + a - b) * (a + b - c))));
+
+
+	if (a == b && b == c) // Determines the type of triangle by comparing its sides
+		type = 1;
+	else if (a == b || a == c || b == c)
+		type = 2;
+	else
+		type = 3;
+
+	switch (type)
+	{
+		case 1:// Code for equilateral
+		{
+			cout << "The angle opposite of side a is : " << A << endl; // Outputs the demanded variables
+			cout << "The angle opposite of side b is : " << B << endl;
+			cout << "The angle opposite of side c is : " << C << endl;
+			cout << "The triangle is equilateral" << endl;
+			cout << "The perimeter is : " << perimeter << endl;
+			cout << "The area is : " << area << endl;
+			cout << "The apothem is : " << apothem << endl; // Only applicable for this type
+			cout << "The circumcenter is : " << circumcenter << endl;
+			
+			if (A >= 90 && A <= 90.0001 || B >= 90 && B <= 90.0001 || C >= 90 && C <= 90.0001) // Determines type of triangle using its angles
+			{
+				cout << "The triangle is right" << endl;
+			}
+			
+			else if (A > 90.0001 || B > 90.0001 || C > 90.0001)
+			{
+				cout << "The triangle is obtuse" << endl;
+			}
+			
+			else
+			{
+				cout << "The triangle is acute" << endl;
+			}
+			
+			break; // Ends program after output
+		}
+
+		case 2: // Code for isosceles
+		{
+			cout << "The angle opposite of side a is : " << A << endl;
+			cout << "The angle opposite of side b is : " << B << endl;
+			cout << "The angle opposite of side c is : " << C << endl;
+			cout << "The triangle is isosceles" << endl;
+			cout << "The perimeter is : " << perimeter << endl;
+			cout << "The area is : " << area << endl;
+			cout << "The triangle of this type has no apothem" << endl; // Not applicable for this type
+			cout << "The circumcenter is : " << circumcenter << endl;
+			
+			if (A >= 90 && A <= 90.0001 || B >= 90 && B <= 90.0001 || C >= 90 && C <= 90.0001) // Determines type of triangle using its angles
+			{
+				cout << "The triangle is right" << endl;
+			}
+				
+			else if (A > 90.0001 || B > 90.0001 || C > 90.0001)
+			{
+				cout << "The triangle is obtuse" << endl;
+			}
+			
+			else
+			{
+				cout << "The triangle is acute" << endl;
+			}
+
+			break; // Ends program after output
+		}
+
+		case 3: // Code for scalene
+		{
+			cout << "The angle opposite of side a is : " << A << endl;
+			cout << "The angle opposite of side b is : " << B << endl;
+			cout << "The angle opposite of side c is : " << C << endl;
+			cout << "The triangle is scalene" << endl;
+			cout << "The perimeter is : " << perimeter << endl;
+			cout << "The area is : " << area << endl;
+			cout << "The triangle of this type has no apothem" << endl; // Not applicable
+			cout << "The circumcenter is : " << circumcenter << endl;
+			
+			if (A >= 90 && A <= 90.0001 || B >= 90 && B <= 90.0001 || C >= 90 && C <= 90.0001) // Determines type of triangle using its angles
+			{
+				cout << "The triangle is right" << endl;
+			}
+				
+			else if (A > 90.0001 || B > 90.0001 || C > 90.0001)
+			{
+				cout << "The triangle is obtuse" << endl;
+			}
+				
+			else
+			{
+				cout << "The triangle is acute" << endl;
+			}
+		
+			break; // Ends program after output
+		}
+	}
+
+	_getch();
+	return 0;
+}
