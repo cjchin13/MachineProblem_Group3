@@ -1,0 +1,122 @@
+#include <iostream>
+#include <conio.h>
+#include <iomanip>
+#include<string>
+
+using namespace std;
+
+int main()
+{
+    string name[50];
+    string l;
+    int A, B, k;
+    float RG[50], GPA[50], QSG[50], ASG[50], MEG[50], PEG[50], FEG[50], QS[50], AS[50], ME[50], PE[50], FE[50];
+    
+    
+    for (A = 0; A < 50; A++) // Inputs the information needed for 50 students
+    {
+
+        cout << "Student Name : "; // Inputs Names of students
+		getline(cin, name[A]);
+        cout << "Total Quiz Score : "; cin >> QS[A]; // Inputs  Total Quiz Scores
+        cout << "Total Activities Score : "; cin >> AS[A]; // Inputs Activity Scores
+        cout << "Prelim Examination Score : "; cin >> PE[A]; // Inputs Prelim Exams Score
+        cout << "Final Examination Score : "; cin >> FE[A]; // Inputs Final Exam Score
+        cin.ignore();
+        QSG[A] = (((QS[A] / 450) * 100 ) * (0.30)); // Computes Raw Grade for Quizzes
+        ASG[A] = (((AS[A] / 1350) * 100 ) * (0.15)); // Computes Raw Grade for Activities
+        PEG[A] = (((PE[A] / 100) * 100) * (.25)); // Computes Raw Grade for Prelim Exams
+        FEG[A] = (((FE[A] / 100) * 100) * (.30)); // Computes Raw Grade for Final Exams
+        RG[A] = QSG[A] + ASG[A] + PEG[A] + FEG[A]; // Computes Final Raw Grade
+        
+        cout << name[A]; 
+        cout << "'s Raw Grade : " << RG[A] << endl; // Evaluates the Grade Weighted Average of 50 students
+        {
+            if (RG[A] >= 95.57 && RG[A] <= 100) // Evaluates GWA  to 1.00 if Raw Grade is between 95.56 - 100  
+            {
+                cout << "GPA is : 1.00";
+            }
+            
+            else if (RG[A] >= 91.12 && RG[A] <= 95.56) // Evaluates GWA  to 1.25 if Raw Grade is between 91.12 - 95.56
+            {
+                cout << "GPA is : 1.25";
+            }
+            
+            else if (RG[A] >= 86.68 && RG[A] <= 91.11) // Evaluates GWA to  1.50 if Raw Grade is between 86.68 - 91.11  
+            {
+                cout << "GPA is : 1.50";
+            }
+            
+            else if (RG[A] >= 82.23 && RG[A] <= 86.67) // Evaluates GWA to  1.75 if Raw Grade is between 82.23 - 86.67  
+            {
+                cout << "GPA is : 1.75";
+            }
+            
+            else if (RG[A] >= 77.79 && RG[A] <= 82.22) // Evaluates GWA to  2.00 if Raw Grade is between 77.79 - 82.22
+            {
+                cout << "GPA is : 2.00";
+            }
+            
+            else if (RG[A] >= 73.34 && RG[A] <= 77.78) // Evaluates GWA to  2.25 if Raw Grade is between 73.34 - 77.78 
+            {
+                cout << "GPA is : 2.25";
+            }
+            
+            else if (RG[A] >= 68.90 && RG[A] <= 73.33) // Evaluates GWA to  2.50 if Raw Grade is between 68.88 - 73.33
+            {
+                cout << "GPA is : 2.5";
+            }
+            
+            else if (RG[A] >= 64.45 && RG[A] <= 68.89) // Evaluates GWA to  2.75 if Raw Grade is between 64.45 - 68.89	  
+            {
+                cout << "GPA is : 2.75";
+            }
+            
+            else if (RG[A] >= 60.00 && RG[A] <= 64.44) // Evaluates GWA to  3.00 if Raw Grade is between 64.44 - 60  
+            {
+                cout << "GPA is : 3.00";
+            }
+            
+            else // Evaluates GWA to 5.00 if Raw is not in the range of 60-100
+            {
+                cout << "GPA is : 5.00";
+            }
+        }
+
+        if (RG[A] >= 60.00 && RG[A] <= 100) // Determines if the student has passed
+        {
+            cout << "\n" << name[A] << " has passed." << "\n" << endl;
+        }
+        
+        else // Determines if the student has failed
+        {
+            cout << "\n" << name[A] << " has failed." << "\n" << endl;
+        }            
+    }
+    
+   for (A = 0; A < 50; A++) // Sorts the Grades of 50 Students from Highest To Lowest
+	{
+	    for (B = A + 1; B < 50; B++)
+	    {
+	        if (RG[A] < RG[B])
+	        {
+	            k = RG[A];
+	            RG[A] = RG[B];
+	            RG[B] = k;
+	            
+	            l = name[A];
+	            name[A] = name[B];
+	            name[B] = l;
+	        }
+	    }
+	}
+	cout << "The top 10 performing students are: " << endl; // Displays the Top Ten performing students in class
+	
+	for (A=0; A<10; A++)
+	{
+	    cout << name[A] << " with a raw grade of " << RG[A] << endl;
+	}
+    
+ 	_getch();
+    return 0;
+}
